@@ -1,10 +1,16 @@
 import React from 'react';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Main from './components/Main/Main';
+import './App.css'
+import Header from './components/Header/Header';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>Currency Converter</h1>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
     </div>
   );
 }
