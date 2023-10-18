@@ -4,22 +4,26 @@ import { useNavigate } from "react-router-dom";
 
 const NavBtn = (props: { text: string; peopleCount?: number, selectedFile?: any }) => {
   let navigate = useNavigate();
-  let clickHandler = async() => {
+  let clickHandler = async () => {
     if (props.text === 'Show Result') {
+      // да простит меня первый принцип SOLID, но...
       if (props.selectedFile) {
         const formData = new FormData();
-        formData.append('file', props.selectedFile);
+        console.log(props.selectedFile);
+        formData.append('image', props.selectedFile);
 
-        const response = await fetch('http://localhost:3000', {
+        const response = await fetch('http://127.0.0.1/api/image', {
           method: 'POST',
           body: formData,
         });
 
         const result = await response.json();
-        const isPersentCount = props.peopleCount ? props.peopleCount / result.peopleCount : null;
-        navigate('/result', { state: { peopleCount: isPersentCount, selectedFile: result.imagePath } });
+        const isPersentCount = props.peopleCount ? Math.floor(result.human_count / props.peopleCount * 100) : null;
+        navigate('/result', { state: { peopleCount: isPersentCount, imagePath: result.image_path } });
       }
-      alert('Please, load a photo!');
+      else {
+        alert('Please, load a photo!');
+      }
     }
     else if (props.text === 'Back') {
       navigate('/');

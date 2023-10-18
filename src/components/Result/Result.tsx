@@ -6,19 +6,8 @@ import './Result.css'
 const Result = () => {
   const location = useLocation();
   const { peopleCount, imagePath }: any = location.state;
-  const [imageBlob, setImageBlob] = useState<Blob>();
 
-  useEffect(() => {
-    const getImage = async () => {
-      const response = await fetch(`http://localhost:3000/${imagePath}`);
-      const blob = await response.blob();
-      setImageBlob(blob);
-    };
-
-    getImage();
-  }, [imagePath]);
-
-  const imageUrl = imageBlob ? URL.createObjectURL(imageBlob) : undefined;
+  const imageUrl = `http://localhost${imagePath}`;
 
   return (
     <div>
