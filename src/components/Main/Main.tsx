@@ -2,9 +2,10 @@ import React, { useState, ChangeEvent } from 'react';
 import NavBtn from '../NavBtn/NavBtn';
 import './Main.css';
 
-const Main: React.FC = () => {
+const Main = () => {
   const [peopleCount, setPeopleCount] = useState<number>();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const handlePeopleCountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPeopleCount(Number(e.target.value));
   };
@@ -27,7 +28,7 @@ const Main: React.FC = () => {
           <input type="file" onChange={handleFileChange} />
         </label>
       </form>
-      <NavBtn text='Show Result'/>
+      <NavBtn text='Show Result' peopleCount={peopleCount ?? 0} selectedFile={selectedFile} />
     </div>
   );
 };
