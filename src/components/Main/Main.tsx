@@ -25,7 +25,7 @@ const Main = () => {
         </label>
         <label>
           Upload Photo:
-          <input type="file" onChange={handleFileChange} />
+          <input type="file" accept="image/*" onChange={handleFileChange} />
         </label>
       </form>
       <NavBtn text='Show Result' peopleCount={peopleCount ?? 0} selectedFile={selectedFile} />

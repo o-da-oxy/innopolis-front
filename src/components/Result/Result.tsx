@@ -5,7 +5,7 @@ import './Result.css'
 
 const Result = () => {
   const location = useLocation();
-  const { peopleCount, imagePath }: any = location.state;
+  const { peopleCountInGroup, isPresentCount, peopleCountOnPhoto, imagePath }: any = location.state;
 
   const imageUrl = `http://localhost${imagePath}`;
 
@@ -13,7 +13,9 @@ const Result = () => {
     <div>
       {imageUrl ?
         <div>
-          <p>Is Present: {peopleCount ?? 0} %</p>
+          <p>Count of people in group: {peopleCountInGroup}</p>
+          <p>Count of people on photo: {peopleCountOnPhoto}</p>
+          <p>Is Present: {isPresentCount ?? 0} %</p>
           <img src={imageUrl} alt="Selected File" />
         </div>
       :
